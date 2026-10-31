@@ -1,0 +1,22 @@
+{
+  "name": "deep-skills",
+  "version": "0.1.0",
+  "description": "A gated plan, test, review and ship workflow for coding agents: nothing is implemented before an explicit go, every claim points at evidence, and every step leaves a work doc the next session can resume from.",
+  "author": {
+    "name": "Oğuz Sabitay",
+    "url": "https://github.com/oguzsabi"
+  },
+  "repository": "https://github.com/oguzsabi/deep-skills",
+  "license": "MIT",
+  "keywords": ["workflow", "planning", "testing", "code-review", "ui-testing", "ux", "pull-requests"],
+  "skills": [
+    "./skills/deep-feature",
+    "./skills/deep-plan",
+    "./skills/deep-test",
+    "./skills/deep-ui-test",
+    "./skills/deep-ux",
+    "./skills/deep-review",
+    "./skills/deep-ship",
+    "./skills/deep-pr-comments"
+  ]
+}
