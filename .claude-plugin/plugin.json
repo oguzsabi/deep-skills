@@ -1,6 +1,6 @@
 {
   "name": "deep-skills",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A gated plan, test, review and ship workflow for coding agents: nothing is implemented before an explicit go, every claim points at evidence, and every step leaves a work doc the next session can resume from.",
   "author": {
     "name": "Oğuz Sabitay",

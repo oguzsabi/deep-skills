@@ -8,7 +8,7 @@ argument-hint: "[optional: screens/flows to audit, persona, or work doc]"
 
 Look at the built UI the way its users will: can they tell what the screen is for, do what they came to do without help, trust what they see, and does it feel like one coherent, modern app? The output is a ranked list of concrete, evidence-backed suggestions the user decides on, not a bug report (that's `/deep-ui-test`).
 
-Read `../deep-plan/references/workflow.md` first: where this skill sits in the flow, the work doc, resuming, and subagents.
+Read `references/workflow.md` first: where this skill sits in the flow, the work doc, resuming, and subagents.
 
 ## Ground rules
 
@@ -37,7 +37,7 @@ Read the app overview (screens, glossary, flows, personas), the design-system do
 
 ### Phase 3 — Walk it as a user
 
-Set up the app with `../deep-ui-test/references/browser-setup.md`. Use realistic data; for empty, error, long-text or many-item states, get data with `../deep-ui-test/references/test-data.md`.
+Set up the app with `references/browser-setup.md`. Use realistic data; for empty, error, long-text or many-item states, get data with `references/test-data.md`.
 
 - **First impression**: on first sight of each screen, what is it for and what is the main action? Write the answer before exploring.
 - **Tasks**: 3-6 realistic tasks per screen, phrased as the persona's goal ("find which creators missed their deadline this week"). Do them without reading the code. Note every hesitation, extra click, ambiguous label, hidden action, and moment where the screen's answer had to be inferred.

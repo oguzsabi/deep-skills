@@ -40,7 +40,7 @@ await page.clock.setFixedTime(new Date('2026-03-29T01:30:00Z'));                
 
 Also available: `browser.newContext({ locale, timezoneId, viewport })` for locale, time zone and viewport.
 
-**In Chrome** (when the scenario is easier to drive by hand): install a shim with the JavaScript tool, then trigger the request with in-app navigation, because a full reload drops the shim. It covers `fetch` and `XMLHttpRequest` (Angular's `HttpClient` uses XHR unless `withFetch()` is configured, and reads JSON responses as text).
+**In the browser tool** (when the scenario is easier to drive by hand): install a shim with the JavaScript tool, then trigger the request with in-app navigation, because a full reload drops the shim. It covers `fetch` and `XMLHttpRequest` (Angular's `HttpClient` uses XHR unless `withFetch()` is configured, and reads JSON responses as text).
 
 ```js
 (() => {

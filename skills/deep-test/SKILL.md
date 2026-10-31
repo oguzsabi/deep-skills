@@ -8,13 +8,13 @@ argument-hint: "[optional: target files/feature/PR, base branch, or work doc]"
 
 Prove the change works at the code level: understand what it is meant to do, find the inputs and states that can really reach it, and make sure each important one is covered by a test that would fail if the behaviour broke. The output is a stronger test suite, fixed bugs, and a written record, not a list of opinions.
 
-Read `../deep-plan/references/workflow.md` first: where this skill sits in the flow, who owns which tests, the work doc, resuming, and subagents.
+Read `references/workflow.md` first: where this skill sits in the flow, who owns which tests, the work doc, resuming, and subagents.
 
 ## Ground rules
 
 1. **Repo instructions win.** Read `CLAUDE.md` / `AGENTS.md` / `CONTRIBUTING.md` / docs index first. Their test conventions, commands and rules override this skill.
 2. **Plausible cases only.** Every edge case names the real path that produces it: an API field the DTO or backend code allows to be null, a user action, legacy stored data, a mode, a race. If no path can produce it, it isn't tested; list it in one line as "ruled out: <why>". Tests for impossible states bloat the suite and bury the real ones.
-3. **Tests prove behaviour.** Same bar as `../deep-plan/references/testing.md`: traceable to an R# or edge case, asserts observable behaviour, deterministic, and fails when the behaviour breaks. Check that last point for real (Phase 4).
+3. **Tests prove behaviour.** Same bar as `references/testing.md`: traceable to an R# or edge case, asserts observable behaviour, deterministic, and fails when the behaviour breaks. Check that last point for real (Phase 4).
 4. **Report reality.** Results are output of commands you ran. Never weaken an assertion, skip a test, add a lint-disable or loosen a type to get green.
 5. **Stay inside the change.** Test the change and its blast radius. Pre-existing gaps elsewhere are listed, not filled, unless the user asks.
 6. **Code level only.** Components are tested through their inputs, outputs and rendered DOM in unit tests. Behaviour that needs a real browser, backend or navigation goes to `/deep-ui-test`; note it there rather than faking it here.
@@ -31,7 +31,7 @@ Find the work doc. If it has an unfinished "Unit test pass", continue from its r
 
 - **Target**: the argument, or the diff against the base branch plus uncommitted and untracked changes. List the changed units: functions, components, services, pipes, stores, queries, mappers.
 - **Reference**: the plan, ticket, decisions and earlier skill sections in the work doc. Reuse the R# numbering and the plan's edge-case sweep.
-- **Test setup**: runners, commands, conventions and fixtures, from CI config and package scripts (`../deep-plan/references/testing.md` first section; commands in `../deep-review/references/checks.md`).
+- **Test setup**: runners, commands, conventions and fixtures, from CI config and package scripts (`references/testing.md` first section; commands in `references/checks.md`).
 - **Baseline**: run the existing tests for the area. Record pre-existing failures so they aren't blamed on this work.
 
 ### Phase 2 — Model the change
@@ -42,7 +42,7 @@ Use the best code tool available (code graph, LSP, else grep) for callers and da
 
 ### Phase 3 — Generate edge cases
 
-Walk `../deep-plan/references/edge-cases.md` against each unit, both sides: new behaviour, and existing callers that could break. Then derive from the code itself:
+Walk `references/edge-cases.md` against each unit, both sides: new behaviour, and existing callers that could break. Then derive from the code itself:
 
 - every branch and every boundary of every condition (`<` vs `<=`, empty vs missing, 0, first/last);
 - values past what a unit assumes: a "done" above its "required", a count gaining a digit (9 → 10), a list longer than the fixtures ever have. Look for code or comments elsewhere that say it can happen (manual overrides, extras, imports); the fixtures never containing it is not evidence that it can't;
@@ -72,7 +72,7 @@ When the cases span 2+ independent modules with substantial work, split the writ
 
 For each failing test, decide from the requirements whether the code or the test is wrong, never from which is easier to change.
 
-**Fix the code now** when all of these hold: one clearly correct fix, small, inside the change's scope, doesn't change a decided product behaviour, public contract or shared code outside the change. The reproduction test stays as the regression test. Keep the fix surgical (`../deep-plan/SKILL.md`, Implementation) and re-review it, diff included: every changed line traces to the failing case, and fixes create bugs too.
+**Fix the code now** when all of these hold: one clearly correct fix, small, inside the change's scope, doesn't change a decided product behaviour, public contract or shared code outside the change. The reproduction test stays as the regression test. Keep the fix surgical (`references/implementation.md`) and re-review it, diff included: every changed line traces to the failing case, and fixes create bugs too.
 
 **Ask the user** for the rest: product choices, several valid fixes, shared code or contracts, risky changes, pre-existing bugs.
 

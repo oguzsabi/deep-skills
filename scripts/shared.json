@@ -1,0 +1,19 @@
+{
+  "skills/deep-plan/references/workflow.md": [
+    "deep-feature",
+    "deep-test",
+    "deep-ui-test",
+    "deep-ux",
+    "deep-review",
+    "deep-ship",
+    "deep-pr-comments"
+  ],
+  "skills/deep-plan/references/implementation.md": ["deep-feature", "deep-test", "deep-pr-comments"],
+  "skills/deep-plan/references/testing.md": ["deep-test", "deep-ui-test"],
+  "skills/deep-plan/references/edge-cases.md": ["deep-test"],
+  "skills/deep-review/references/checks.md": ["deep-test"],
+  "skills/deep-test/references/test-audit.md": ["deep-ui-test"],
+  "skills/deep-ui-test/references/browser-setup.md": ["deep-ux"],
+  "skills/deep-ui-test/references/test-data.md": ["deep-ux"],
+  "skills/deep-review/references/review-checklist.md": ["deep-pr-comments"]
+}

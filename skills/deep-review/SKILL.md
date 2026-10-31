@@ -8,7 +8,7 @@ argument-hint: "[optional: base branch, plan file, ticket ref, or scope]"
 
 A full review of the implementation just done, the way a careful senior reviewer would do it before approving a PR, followed by fixing what can be fixed without the user and a clear list of what needs their decision.
 
-It runs after `/deep-test` and `/deep-ui-test` in the deep-* flow; `../deep-plan/references/workflow.md` describes the flow and the work doc this review reads and writes.
+It runs after `/deep-test` and `/deep-ui-test` in the deep-* flow; `references/workflow.md` describes the flow and the work doc this review reads and writes.
 
 The review answers five questions, in this order of importance:
 

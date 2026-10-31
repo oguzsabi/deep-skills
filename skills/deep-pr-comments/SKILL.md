@@ -86,9 +86,9 @@ Conflicts always go to the user, with the decision quoted, where it was made, an
 For each fix:
 
 - Check the blast radius of what you change: callers, every mode/context the code runs in (roles, public/shared/export, feature flags, mobile/desktop, locales), contracts, shared styles/components.
-- Walk the edge cases the fix touches: null/empty, boundaries, async/race, error paths, permissions. If the `deep-review` skill is installed, its `references/review-checklist.md` is the full list.
+- Walk the edge cases the fix touches: null/empty, boundaries, async/race, error paths, permissions. The full list is `references/review-checklist.md`.
 - For bug comments, add a regression test that fails without the fix. For other fixes, update or add tests where behavior changed.
-- Keep each fix traceable to its comment number, so the report and any commits map cleanly. Keep it surgical (`../deep-plan/SKILL.md`, Implementation): no drive-by formatting, renames or neighbouring refactors.
+- Keep each fix traceable to its comment number, so the report and any commits map cleanly. Keep it surgical (`references/implementation.md`): no drive-by formatting, renames or neighbouring refactors.
 
 After all fixes:
 
@@ -100,7 +100,7 @@ After all fixes:
 
 Use `references/report-template.md`: a per-comment table (verdict, action, risk), what was fixed with file refs, decision conflicts, questions for the user, check results, docs updated, and draft replies.
 
-Record the round in the work doc ("PR comments" section, dated round; `../deep-plan/references/workflow.md` §3) and set "Resume here". If fixes changed logic or UI, the next step is a scoped `/deep-test` or `/deep-ui-test` on what they touched, then `/deep-ship`.
+Record the round in the work doc ("PR comments" section, dated round; `references/workflow.md` §3) and set "Resume here". If fixes changed logic or UI, the next step is a scoped `/deep-test` or `/deep-ui-test` on what they touched, then `/deep-ship`.
 
 Questions follow the same format as `/deep-plan` and `/deep-review`: numbered (Q1, Q2, ...), context with file refs and the comment number, options **A / B / C** with the recommended option first, marked **(Recommended)** with a reason.
 

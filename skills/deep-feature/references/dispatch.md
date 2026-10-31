@@ -14,7 +14,7 @@
 test "${HERDR_ENV:-}" = 1 && echo herdr || echo subagents
 ```
 
-- **Herdr mode** (`HERDR_ENV=1`): every heavy step is a real Claude session in its own named tab and pane. The user can watch it and type into it.
+- **Herdr mode** (`HERDR_ENV=1`): every heavy step is a real session of the same agent the conductor runs in, in its own named tab and pane. The user can watch it and type into it.
 - **Subagent mode** (anything else): every heavy step is a fresh background subagent (general-purpose type, same model as the conductor). Questions and answers go through the conductor.
 
 Record the mode in the Flow table. If Herdr commands fail, say so and fall back to subagent mode for the rest of the flow.
@@ -30,8 +30,8 @@ Repo: <absolute path>, branch <branch>, base <base>.
 Work doc: <absolute path>. Read "Resume here", the Flow table, Decisions and the earlier steps' sections first;
 they are your full context. Reuse what they record; don't re-ask answered questions.
 
-Run /<skill> <args>.                        ← or, for implement: follow "Implementation (only after the go)"
-                                               in ../deep-plan/SKILL.md, the go is given.
+Run /<skill> <args>.                        ← or, for implement: follow the plan and
+                                               references/implementation.md; the go is given.
 <Scope, for re-runs: "Scoped re-run: only <units / scenario rows> touching <files>, changed by <step>.">
 
 Questions: when the skill needs the user's decision, write the questions to the work doc, then end your turn with
@@ -76,7 +76,7 @@ herdr pane rename "$HERDR_PANE_ID" conductor
 tab=$(herdr tab create --workspace "$HERDR_WORKSPACE_ID" --cwd "<repo path>" --label <step-label> --no-focus)
 pane=<.result.root_pane.pane_id from $tab>
 herdr pane rename "$pane" <step-label>
-herdr agent start <step-label> --kind claude --pane "$pane"
+herdr agent start <step-label> --kind <agent> --pane "$pane"   # the conductor's own agent: claude, codex, cursor, opencode...
 ```
 
 Write the brief to a file in the session scratchpad (`<step-label>-brief.md`) rather than passing it inline, then prompt the session as a **background** Bash command, so the conductor is notified when the step settles:
@@ -99,9 +99,9 @@ Leave the finished tab open so the user can look back; its agent stays idle. Clo
 
 ## 4. Subagent mode
 
-- Start the step with the Agent tool: general-purpose type, background, the brief as the prompt, description `<step> step`.
+- Start the step with your agent's subagent tool, in the background, with the brief as the prompt (Claude Code: the Agent tool, general-purpose type, description `<step> step`).
 - You're notified when it stops. Its final message is either the questions or the summary.
-- Relaying answers: SendMessage to that agent with the user's answers as given; its context is intact. (Load SendMessage with ToolSearch if it's deferred.)
+- Relaying answers: send the user's answers, as given, to that agent; its context is intact (Claude Code: SendMessage, loaded with ToolSearch if it's deferred). If your agent can't message a running subagent, start a new one with the same brief plus the answers; it resumes from the work doc.
 - If the agent is gone (session restarted, crashed, or it can't be reached), start a new one with the same brief; it resumes from the work doc.
 - The step's own second-opinion agents: the step agent tries to start them itself. If it reports it couldn't, start them from the conductor in parallel with the same brief the skill describes, and send their findings to the step agent.
 - Only one step that uses the browser runs at a time.

@@ -48,23 +48,47 @@ Run each step by hand, or let `/deep-feature` conduct the whole flow: it decides
 
 ## Install
 
-### Claude Code
+### Claude Code (plugin)
 
 ```
 /plugin marketplace add oguzsabi/deep-skills
 /plugin install deep-skills@deep-skills
 ```
 
-### Any other agent that reads skills
+### Claude Code, Codex, Cursor, OpenCode and other agents
 
-Copy the folders in `skills/` into your agent's skills directory (for Claude Code without the plugin: `~/.claude/skills/`). Keep them side by side: the skills reference each other's `references/` files with relative paths such as `../deep-plan/references/workflow.md`.
+```
+npx skills add oguzsabi/deep-skills -g
+```
+
+`-g` installs for every project; leave it off to install into the current one. Add `--agent codex` (or `claude-code`, `cursor`, `opencode`, `github-copilot`) to install for one agent only.
+
+### By hand
+
+Copy the folders in `skills/` into your agent's skills directory (Claude Code: `~/.claude/skills/`; Codex: `~/.agents/skills/`). Every folder is self-contained, so you can copy all eight or just the ones you want.
+
+## Quick start
+
+On a branch you already have, with no setup:
+
+```
+/deep-review
+```
+
+It reviews the branch against its ticket or commits, runs your formatter, linter, type checks and tests, fixes what's straightforward and asks about the rest. If that's useful, try the whole flow on your next ticket:
+
+```
+/deep-feature <ticket link, spec or description>
+```
+
+It plans first and asks its questions with recommended answers. Nothing is implemented until you say go, and nothing is shipped until you say go again. To drive the steps yourself, start with `/deep-plan <ticket>` and follow the next step each skill names.
 
 ## Requirements
 
 - **git**, and **gh** (GitHub) or **glab** (GitLab) for `deep-ship` and `deep-pr-comments`.
-- **A browser tool** for `deep-ui-test` and `deep-ux`. The steps name the Claude in Chrome tools; a Playwright MCP server or another browser tool works with its equivalents.
+- **A browser tool** for `deep-ui-test` and `deep-ux`: Claude in Chrome, a Playwright MCP server, a built-in browser pane, or any tool that can navigate, click, resize and read the console and network.
 - **Optional:** a code-graph or semantic index (for example tokensave or trail) for faster code mapping. Without one, the skills use grep and file reads.
-- **Optional:** Herdr for `deep-feature`'s tab mode, where each step runs in its own visible terminal tab. Without it, steps run as subagents.
+- **Optional:** [Herdr](https://herdr.dev) for `deep-feature`'s tab mode, where each step runs in its own visible terminal tab. Without it, steps run as subagents.
 
 ## Your repo's rules win
 
@@ -73,6 +97,17 @@ Every skill reads `CLAUDE.md`, `AGENTS.md`, `CONTRIBUTING.md` and the docs index
 ## When not to use it
 
 This is a heavy process on purpose. For a one-line fix, a typo or a quick experiment, skip it. Use it when a change is big enough that building the wrong thing or breaking something would cost more than an hour of agent time.
+
+## Working on the skills
+
+Reference files that several skills read (the workflow, the implementation rules, the test bar and a few more) live in one skill and are copied into the others, so each folder stands alone. [`scripts/shared.json`](scripts/shared.json) lists them. Edit the source, never a copy, then:
+
+```
+node scripts/sync-shared.mjs   # refresh the copies
+node scripts/check.mjs         # frontmatter, references, copies, manifests, versions, README links
+```
+
+CI runs the check on every push and pull request. Changes are listed in the [changelog](CHANGELOG.md).
 
 ## License
 

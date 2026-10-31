@@ -111,5 +111,5 @@ Use them when they make the work faster without losing quality; otherwise work i
 - **Contract for each agent:** the files it owns (no two agents edit the same file), what "done" means, where it writes its result (a scratch file plus a compact summary), no git writes. Mechanical work (writing specs from a fixed case list) can use a smaller model.
 - **At most 3 at once.** Say in one line why parallel is faster.
 - **The browser stays in the main thread.** One browser, one login, shared data: parallel browser agents interfere. Under `/deep-feature` the "main thread" is the step's own session or agent; only one browser step runs at a time.
-- **A step running under `/deep-feature`** can't ask the user directly when it's a subagent: it ends its turn with its questions and gets the answers as its next message (see `deep-feature/references/dispatch.md`).
+- **A step running under `/deep-feature`** can't ask the user directly when it's a subagent: it ends its turn with its questions and gets the answers as its next message (the deep-feature skill's dispatch reference covers this).
 - **Their output is a claim.** Verify every finding and review every test they write before it counts.

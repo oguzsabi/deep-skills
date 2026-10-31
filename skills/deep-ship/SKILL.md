@@ -104,4 +104,4 @@ Whenever this skill runs on a branch that already has an open PR (new commits, r
 
 ### Phase 8 — Report
 
-Per repo: branch, commits (SHA + subject), push result, PR URL (created / updated / not opened and why), and what changed in the description. Then anything still open: unfinished work, questions, checks not run. Update the work doc's "Resume here" (`../deep-plan/references/workflow.md` §3) with the PR links and status, and any handoff doc or project memory that tracks PRs.
+Per repo: branch, commits (SHA + subject), push result, PR URL (created / updated / not opened and why), and what changed in the description. Then anything still open: unfinished work, questions, checks not run. Update the work doc's "Resume here" (`references/workflow.md` §3) with the PR links and status, and any handoff doc or project memory that tracks PRs.

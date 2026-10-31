@@ -8,7 +8,7 @@ argument-hint: "[ticket ref, spec or task — or nothing to resume from the work
 
 Drive a piece of work from ticket to merged-ready PR through the deep-* skills, deciding at each point what's needed next. The conductor routes, relays and records; the steps do the work, each in its own context.
 
-Read `../deep-plan/references/workflow.md` first (the flow, test ownership, the work doc, resuming, subagents), then `references/routing.md` (what runs next) and `references/dispatch.md` (how a step is started, in subagent or Herdr mode).
+Read `references/workflow.md` first (the flow, test ownership, the work doc, resuming, subagents), then `references/routing.md` (what runs next) and `references/dispatch.md` (how a step is started, in subagent or Herdr mode).
 
 ## Ground rules
 

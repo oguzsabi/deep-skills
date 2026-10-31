@@ -1,6 +1,6 @@
 ---
 name: deep-ui-test
-description: Deep real-browser testing of what was built in the UI, in any repo with a web UI. Turns every requirement (ticket, plan, decisions) into a scenario matrix, maps the screens the diff touches plus neighbouring screens that could regress, runs every scenario in Chrome across states, roles, modes, viewports and locales, creates whatever data a scenario needs (real data through the UI or API, seeded fixtures, or realistic mocked responses) instead of skipping it, watches console and network, fixes straightforward bugs and re-verifies them, asks about the rest, audits and extends the e2e tests, and records the matrix in the work doc so a new session can resume. Use whenever the user invokes /deep-ui-test, or asks to "test it in the browser", "click through everything", "make sure the UI works", "test against the requirements", "QA this", or finishes UI work and wants proof it works before review.
+description: Deep real-browser testing of what was built in the UI, in any repo with a web UI. Turns every requirement (ticket, plan, decisions) into a scenario matrix, maps the screens the diff touches plus neighbouring screens that could regress, runs every scenario in a real browser across states, roles, modes, viewports and locales, creates whatever data a scenario needs (real data through the UI or API, seeded fixtures, or realistic mocked responses) instead of skipping it, watches console and network, fixes straightforward bugs and re-verifies them, asks about the rest, audits and extends the e2e tests, and records the matrix in the work doc so a new session can resume. Use whenever the user invokes /deep-ui-test, or asks to "test it in the browser", "click through everything", "make sure the UI works", "test against the requirements", "QA this", or finishes UI work and wants proof it works before review.
 argument-hint: "[optional: screens/flows to target, environment, or work doc]"
 ---
 
@@ -8,7 +8,7 @@ argument-hint: "[optional: screens/flows to target, environment, or work doc]"
 
 Prove that what was built works in the real app, for every requirement, in every state and context a user can reach, and that nothing next to it broke. When this skill reports a requirement as verified, someone saw it work in a browser, with evidence; when something couldn't be verified, the report says so and why.
 
-Read `../deep-plan/references/workflow.md` first: where this skill sits in the flow, who owns which tests, the work doc, resuming, and subagents.
+Read `references/workflow.md` first: where this skill sits in the flow, who owns which tests, the work doc, resuming, and subagents.
 
 ## Ground rules
 
@@ -81,7 +81,7 @@ Walk the main flows of every regression neighbour and every mode the touched scr
 
 ### Phase 9 — Lock it into e2e
 
-- Audit the e2e specs the implementation added or changed with `../deep-test/references/test-audit.md`: keep / update / remove / merge.
+- Audit the e2e specs the implementation added or changed with `references/test-audit.md`: keep / update / remove / merge.
 - Add e2e specs for every fixed bug the e2e setup can reproduce, for P1 flows without coverage, and for mocked-data scenarios (the `page.route` mock becomes a deterministic test). Follow the repo's e2e conventions and update its e2e coverage docs.
 - Spec writing can go to an agent that owns the e2e files while you continue in the browser (workflow.md §5). Review its specs before they count. Run the e2e suite (in the background if long) and report the real result.
 

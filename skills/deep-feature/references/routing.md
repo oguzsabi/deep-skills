@@ -34,7 +34,7 @@ Statuses: pending / running / asking / done / skipped / failed / waiting (on the
 
 1. `/deep-plan` — no plan in the work doc, or the scope changed enough that the plan is wrong.
 2. **Gate: go to implement.**
-3. implement — the plan's Implementation section (`../deep-plan/SKILL.md`, "Implementation (only after the go)").
+3. implement — the plan, following `references/implementation.md`.
 4. `/deep-test`
 5. `/deep-ui-test` — when UI changed.
 6. `/deep-ux` — when the UI change is visible enough (skip rules).
