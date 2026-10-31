@@ -1,0 +1,14 @@
+{
+  "name": "issue-list",
+  "private": true,
+  "type": "module",
+  "description": "A small issue list, the subject of the deep-feature example.",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test test/*.test.js",
+    "e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.57.0"
+  }
+}
