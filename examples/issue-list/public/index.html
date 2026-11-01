@@ -10,9 +10,31 @@
     <main>
       <header class="page-header">
         <h1>Issues</h1>
-        <p id="count" class="count" aria-live="polite">Loading…</p>
+        <div class="header-meta">
+          <p id="count" class="count" aria-live="polite">Loading…</p>
+          <button id="clear-filters" class="link-button" type="button" aria-label="Clear search and filter" data-testid="clear-filters" hidden>Clear</button>
+        </div>
       </header>
-      <ul id="issues" class="issues"></ul>
+      <form id="filters" class="filters" role="search">
+        <label class="field field-search">
+          <span>Search titles</span>
+          <input id="search" type="search" name="q" autocomplete="off" data-testid="search-input" />
+        </label>
+        <label class="field">
+          <span>Status</span>
+          <select id="status-filter" name="status" autocomplete="off" data-testid="status-filter">
+            <option value="all">All</option>
+            <option value="open">Open</option>
+            <option value="in_progress">In progress</option>
+            <option value="closed">Closed</option>
+          </select>
+        </label>
+      </form>
+      <ul id="issues" class="issues" hidden></ul>
+      <div id="empty-state" class="empty-state" data-testid="empty-state" hidden>
+        <p id="empty-message"></p>
+        <button id="reset-filters" type="button" data-testid="reset-filters">Clear search and filter</button>
+      </div>
     </main>
     <script type="module" src="/app.js"></script>
   </body>
