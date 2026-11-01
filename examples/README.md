@@ -13,19 +13,19 @@ A real run of the whole flow on a small app, kept as it happened: the work doc e
 |---|------|--------|-------------|
 | 1 | deep-plan | 1 | Read the ticket and code, found the gaps the ticket left open (how back should step through typing, how Turkish letters should match), asked 4 questions and stated 5 defaults |
 | – | **gate** | | The user said go |
-| 2 | implement | 1 | Built it in the plan's 6 steps, each with a check |
-| 3 | deep-test | 2 | No bugs; unit tests 4 → 22, each new test proven by breaking the code it guards |
-| 4 | deep-ui-test | 2 | Ran 26 scenarios at 8 viewport sizes in a real browser; found the bug below |
+| 2 | implement | 1 | Built it in the plan's 6 steps, each with a check; unit tests 4 → 17, e2e runs 4 → 20 |
+| 3 | deep-test | 2 | No bugs; unit tests 17 → 21; broke the code on purpose 22 ways across both rounds, and the tests caught all 22 |
+| 4 | deep-ui-test | 2 | Ran 26 scenarios at 8 viewport sizes in a real browser, then 15 rows after the UX changes; found 1 bug |
 | 5 | deep-ux | 1 | Walked the page as a first-time user; 7 ranked suggestions, prototyped live; 6 built |
-| 6 | deep-review | 2 | Own pass plus an independent reviewer; fixed 11 more issues |
+| 6 | deep-review | 2 | Own pass plus an independent reviewer; found 4 more bugs, and closed 11 items in all (4 bugs, 4 test gaps, 2 doc corrections, 1 UX decision by the user) |
 | – | **gate** | | The user said go |
 | 7 | deep-ship | 1 | Committed and opened the PR |
 
-The user answered 20 questions, all as numbered lists, most with "all recommended", and gave the two go's. Everything else ran without them.
+The user answered 20 questions, mostly with "all recommended", and gave the two go's. Everything else ran without them. The final state is 22 unit tests and 34 e2e runs (17 tests on desktop and phone), all passing.
 
-## What the steps caught
+## The 5 bugs
 
-Each of these passed every test that existed when it was found.
+No test that existed at the time failed on any of these.
 
 - **Typing before the page's script loads was lost** (deep-ui-test). On a slow connection the search box shows before the script runs; whatever was typed there was wiped when the script started. The user chose to keep it; the fix has an e2e test that holds the script back.
 
@@ -33,13 +33,20 @@ Each of these passed every test that existed when it was found.
   |---|---|---|
   | ![typed](issue-list/docs/features/12-search-and-filter-ui-test/05-before-script-1-typed.jpg) | ![wiped](issue-list/docs/features/12-search-and-filter-ui-test/05-before-script-2-script-ran.jpg) | ![kept](issue-list/docs/features/12-search-and-filter-ui-test/05-before-script-3-fixed.jpg) |
 
-- **Safari stopped updating the list** after about 100 URL changes in 10 seconds, its limit on history writes (deep-review, reproduced in WebKit). A later round found that a refused write was never retried, so the URL could stay out of step with the screen.
-- **Going back two pages showed the wrong status** in Chrome, because the browser restored the select's value over the URL (deep-review).
+- **The list stopped updating in Safari** after about 100 URL changes in 10 seconds, its limit on history writes (deep-review round 1). Reproduced in Playwright WebKit, which the e2e suite doesn't run, so this fix has no e2e test.
+- **A refused URL change was never retried**, so the URL could stay out of step with the screen (deep-review round 2, also WebKit, also no e2e test).
+- **Going back two pages showed the wrong status** in Chromium, because the browser restored the select's value over the URL (deep-review). This also proved one earlier "pass" from deep-test wrong for that path.
 - **Focus fell to the page** when back/forward hid a focused button (deep-review).
-- **Turkish search:** `'İstanbul'.toLowerCase()` isn't `istanbul`, so a plain match misses it (deep-plan, checked in Node before asking).
-- **UX:** the empty state now says what removed the results, the form controls meet 3:1 contrast, and both controls fit one row on a phone (deep-ux).
 
-![The finished empty state](images/final-empty-state.jpg)
+## What else the steps changed
+
+These weren't bugs in the code, but they changed what got built.
+
+- **Turkish search** (deep-plan, before any code existed): `'İstanbul'.toLowerCase()` isn't `istanbul`, so a plain match misses it. The plan checked this in Node and asked how strict matching should be.
+- **UX** (deep-ux): the empty state now says what removed the results, the form controls meet 3:1 contrast, and both controls fit one row on a phone.
+- **Test gaps** (deep-test, deep-review): tests that stayed green when the rule they covered was broken now fail.
+
+![The finished empty state, captured after the run from the final code](images/final-empty-state.jpg)
 
 ## What it didn't verify
 
