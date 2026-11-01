@@ -3,11 +3,11 @@
 **Ticket:** [docs/tickets/12-search-and-filter.md](../tickets/12-search-and-filter.md) · **Type:** Story · **Status:** Implemented, unit- and browser-tested, UX-reviewed, reviewed; ready to ship
 
 ## Resume here
-- Stage (current): deep-review round 2 (scoped) — done (2026-11-01): 4 fixes, unit 22/22, e2e 34/34; see "Review → Round 2"
+- Stage (current): deep-ship — done (2026-11-01): feature committed, branch pushed, PR opened to main; waiting for PR review (then /deep-pr-comments)
 - Stage: deep-review round 1 — done (2026-11-01): 6 fixes, Q1 → A applied, Q2 → A kept
-- Next: /deep-ship after the user's go
+- Next: waiting for PR review; on comments, /deep-feature continues with /deep-pr-comments
 - Open questions: none. Accepted open items (loop guard B, Decisions round 5) are listed under "Review → Round 2 → Accepted open items"
-- Working tree: branch `example/deep-feature`, uncommitted (nothing committed yet): this doc, the docs index entry, `public/lib/filters.js`, `test/filters.test.js`, `public/index.html`, `public/styles.css`, `public/app.js`, `e2e/filters.spec.js`, `docs/features/12-search-and-filter-ui-test/`, `docs/features/12-search-and-filter-ux/`; no shared data created
+- Working tree: branch `example/deep-feature`, everything committed (the feature commit, then the example write-up); no shared data created
 
 ## Flow (deep-feature)
 Mode: subagents
@@ -20,7 +20,7 @@ Mode: subagents
 | 4 | deep-ui-test | done | 2 | subagent | R1: 26 rows × 8 viewports, 1 bug fixed (S23). R2 scoped: 15 rows pass, 0 bugs; S32 (two reset buttons) for review |
 | 5 | deep-ux | done | 1 | subagent | 0 bugs; 6 of 7 suggestions built (Q1-Q6 → A, Q7 kept); unit 22, e2e 30 · logic_changed, ui_changed |
 | 6 | deep-review | done | 2 | subagent | R1: 7 fixed (F1-F6, Q1 → A). R2 scoped: 4 fixed (F7-F10). Ready for PR; unit 22, e2e 34. Loop guard: no round 3 of deep-test/deep-ui-test (user: B) |
-| 7 | deep-ship | waiting | – | – | gate: user's go |
+| 7 | deep-ship | done | 1 | conductor | feature committed; branch pushed and PR opened to main |
 
 ## Plan
 

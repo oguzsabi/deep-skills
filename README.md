@@ -83,6 +83,10 @@ It reviews the branch against its ticket or commits, runs your formatter, linter
 
 It plans first and asks its questions with recommended answers. Nothing is implemented until you say go, and nothing is shipped until you say go again. To drive the steps yourself, start with `/deep-plan <ticket>` and follow the next step each skill names.
 
+## Example
+
+[One ticket through `/deep-feature`](examples/README.md): a real run on a small app, with the work doc every step wrote, the screenshots, and the bugs the steps caught that the tests at the time didn't.
+
 ## Requirements
 
 - **git**, and **gh** (GitHub) or **glab** (GitLab) for `deep-ship` and `deep-pr-comments`.

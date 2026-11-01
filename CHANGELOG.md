@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- `examples/`: a real `/deep-feature` run on a small issue-list app (ticket, work doc, screenshots, code), linked from the README.
+
 ## 0.2.0 (2026-10-31)
 
 - Every skill folder now works on its own. Reference files that several skills read are copied into each skill that reads them by `scripts/sync-shared.mjs`; no skill points outside its own folder any more.
